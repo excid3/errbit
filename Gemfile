@@ -87,9 +87,9 @@ group :heroku, :production do
   gem 'rails_12factor', require: ENV.key?("HEROKU")
 end
 
-group :no_docker, :test, :development do
-  gem 'therubyracer', platform: :ruby # C Ruby (MRI) or Rubinius, but NOT Windows
-end
+# group :no_docker, :test, :development do
+#   gem 'therubyracer', platform: :ruby # C Ruby (MRI) or Rubinius, but NOT Windows
+# end
 
 gem 'puma'
 gem 'sass-rails'
