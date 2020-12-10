@@ -63,7 +63,7 @@ class User
                          email:      data['email'],
                          google_uid: access_token.uid,
                          password:   Devise.friendly_token[0, 20]
-                        )
+      )
     end
     user
   end
@@ -116,7 +116,9 @@ class User
     save(validate: false)
   end
 
-  private def generate_authentication_token
+private
+
+  def generate_authentication_token
     loop do
       token = Devise.friendly_token
       break token unless User.where(authentication_token: token).first

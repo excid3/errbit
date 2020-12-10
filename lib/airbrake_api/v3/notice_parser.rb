@@ -54,7 +54,7 @@ module AirbrakeApi
       end
 
       def request
-        environment = (params['environment'] || {}).merge(
+        environment = (params['environment'] || {}).merge!(
           'HTTP_USER_AGENT' => context['userAgent']
         )
 
@@ -69,7 +69,8 @@ module AirbrakeApi
       end
 
       def user_attributes
-        return context['user'] if context['user']
+        user = context['user']
+        return user.is_a?(Hash) ? user : { user: user } if user
 
         {
           'id'       => context['userId'],
